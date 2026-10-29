@@ -5,7 +5,8 @@
     "url": "https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/1",
     "draft": "issue-drafts/01-parser-day-first.md",
     "verified_on": "2026-10-29",
-    "state": "OPEN"
+    "state": "CLOSED",
+    "state_reason": "completed"
   },
   {
     "cause": "hint",
@@ -13,7 +14,8 @@
     "url": "https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/2",
     "draft": "issue-drafts/02-booking-v3-hint.md",
     "verified_on": "2026-10-29",
-    "state": "OPEN"
+    "state": "CLOSED",
+    "state_reason": "not_planned"
   },
   {
     "cause": "one-day",

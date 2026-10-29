@@ -12,7 +12,7 @@ For agent navigation and upkeep, start at [KNOWLEDGE.md](KNOWLEDGE.md) and the [
 
 The review covers the export through 4 October 2026. Its review date does not imply new queue data. One-day root cause remains unconfirmed. This repository documents problems; it does not contain a production booking-system fix.
 
-Live issues: [parser #1](https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/1), [form hint #2](https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/2), with [closed speculative issue #3](https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/3) retained as history. Course acceptance is still pending.
+Live issues: [parser #1](https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/1), [form hint #2](https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/2), with [closed speculative issue #3](https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/3) retained as history. Both supported tickets are now closed: the desk reports the date reader fixed, and the hint closed without a fix because booking-v3 was retired. Final course acceptance is still pending.
 
 ## Reproduce
 

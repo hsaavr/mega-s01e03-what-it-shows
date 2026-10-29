@@ -38,6 +38,14 @@
         "src/lib/kb/locales.ts": "264dd51e35c8239ac2a0bd6d383986a39f1be8bc25b01522d0740912fe2f0acd",
         "src/routes/kb/decisions/0001-dedupe-by-subject/+page.svx": "41ac5460f198519b61b72c1a344a89fc3f9c26eda481ad85d710fa23f336a1c9"
       }
+    },
+    "4471-desk-update": {
+      "source_url": "https://hq.mega.dev/challenges/what-it-shows",
+      "evidence_as_of": "2026-10-29",
+      "reviewed_on": "2026-10-29",
+      "sha256": {
+        "src/lib/data/desk-update-4471.json": "478f2c9abf579e96f84837582785c95a4f0c999ed624e5bea79aec657f36d027"
+      }
     }
   }
 }

@@ -1,0 +1,9 @@
+{
+  "source_url": "https://hq.mega.dev/challenges/what-it-shows",
+  "observed_on": "2026-10-29",
+  "ticket": 4471,
+  "closed_label": "05 oct",
+  "parser": { "status": "FIXED", "detail": "fix(dates): parse dd/mm for eu locales" },
+  "hint": { "status": "WON'T FIX", "detail": "booking-v3 form retired" },
+  "verification": "Reported by the course's engineering update; no production patch or deployment was independently tested here."
+}

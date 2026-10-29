@@ -2,34 +2,39 @@
 layout: runbook
 title: '#4471 reviewed · two defect paths and symptom notes'
 owner: hsaavr · Codex harness
-status: investigated
-reviewed: 2026-10-28
+status: closed by desk
+reviewed: 2026-10-29
 signature: 'v1.eyJzdWIiOiIxMjc1IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMyNTY5MDAsImV4cCI6MTc5MzM0MzMwMH0.mjy3LBSAEzQCLkpOjd8aq7D2fMoC-6-Z_11wJUZn7RE'
 kind: incident-review
 confidence: mixed; one-day cause unconfirmed
 evidence_as_of: 2026-10-04
 source_set: 4471-export
+status_source_set: 4471-desk-update
+status_as_of: 2026-10-29
 ---
 
 <script>
   import ReportAudit from '#lib/kb/ReportAudit.svelte';
   import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
+  import DeskUpdate from '#lib/kb/DeskUpdate.svelte';
 </script>
 
 The desk merged two date defect paths into one ticket. Shared subjects did not establish a shared cause. The old “known, one fix queued” conclusion cannot cover this evidence. Ticket coverage below follows the desk's exported filing view; symptom notes remain within their original group.
 
-This review uses the export through **4 October 2026**, not a live queue. A later review date records when the export was checked; it does not imply fresh reports. No product fix has been shipped or verified here.
+The report counts use the export through **4 October 2026**. The later engineering announcement is recorded separately below. Its reported completion is distinct from independent runtime verification, which was not performed here.
+
+<DeskUpdate />
 
 ## Problems and report counts
 
 <ReportAudit />
 
-## What each issue must resolve
+## Original defects and acceptance criteria
 
-**Shared parser.** The supplied `causes.ts` documents month-first parsing of day-first tenant input. R-41203 describes 2 December becoming 12 February. R-41205 belongs here despite its `hint` intake tag: its tenant runs booking-v2 and its channel is app. Fix the parsing contract and check day-first tenants through app, email, and form paths. This classification is supported by the supplied logic; it is not a production-code reproduction.
+**Shared parser.** The supplied `causes.ts` documents month-first parsing of day-first tenant input. R-41203 describes 2 December becoming 12 February. R-41205 belongs here despite its `hint` intake tag: its tenant runs booking-v2 and its channel is app. The original fix criteria required the parsing contract to preserve day-first dates across affected entry paths. The desk now reports that correction fixed; this review did not independently reproduce the production behavior.
 
-**Form hint.** booking-v3 prints `MM/DD/YYYY` while the form parses by its day-first tenant locale. The hint instructs the user to enter the wrong order. R-41230 is a booking-v3 form report that belongs here despite a `parser` intake tag. Align the visible hint with parsing and validate localized inputs. A shared-parser change alone does not fix this mismatch.
+**Form hint.** booking-v3 prints `MM/DD/YYYY` while the form interprets input by its day-first tenant locale. The hint instructs the user to enter the wrong order. R-41230 belongs here despite a `parser` intake tag. The original requested change was to align visible guidance with interpretation. The desk instead retired booking-v3 and closed this problem without a fix; the earlier acceptance criteria are historical context, not active repair work.
 
 ## Unconfirmed symptom notes
 

@@ -23,3 +23,9 @@ Expected: 7 April. Documented faulty behavior: 4 July.
 Make interpretation follow the tenant's date convention consistently through storage, reminders, and invitations. Cover ambiguous values such as `07/04/2026`, valid days above 12 such as `13/04/2026`, invalid dates, and browser-locale changes with tenant settings held fixed.
 
 Evidence and exact report IDs: `evidence/report-audit.json`. Recompute with `node scripts/analyze.mjs`. The count measures reports, not bookings or affected-user rates. This issue requests one fix: correct this shared date-reading behavior.
+
+## Desk disposition
+
+The course engineering update reports this problem FIXED: fix(dates): parse dd/mm for eu locales. #4471 is marked closed 05 Oct. This records the desk announcement, not an independently tested production patch.
+
+Source: [course engineering update](https://hq.mega.dev/challenges/what-it-shows), observed 29 October 2026.

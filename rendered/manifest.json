@@ -1,7 +1,8 @@
 {
-  "generatedAt": "2026-10-29T07:10:40.045Z",
+  "generatedAt": "2026-10-29T07:18:02.891Z",
   "inputs": {
     "src/lib/data/desk-notes.json": "a5ffbc829486847f2e301697cc787781b9ff504a69a75233fc8dc6d3cc3ad053",
+    "src/lib/data/desk-update-4471.json": "478f2c9abf579e96f84837582785c95a4f0c999ed624e5bea79aec657f36d027",
     "src/lib/data/issue-links.json": "03e655830139375c751053a13c02f9f845fe2bee71c59ff4c166aae6e6d03d4d",
     "src/lib/data/reports-4471.json": "2bd8489da70d4dd5ead1b6c58bda0e7ec563bb7dcc19c1f0444a6e04de470b7c",
     "src/lib/data/tenants/alder.physio.json": "b585e7cd7d7e610f3450f4e09501e854934abf0faa7c65a0bfbddfc046028a67",
@@ -18,6 +19,7 @@
     "src/lib/kb/Callout.svelte": "cc171e18a689ac85ceb1839ebbb9788989140ad38b7e9cedc7fba71cb24c9c85",
     "src/lib/kb/CauseTable.svelte": "6164aa8fe4c5a1cbe4076c4c9d16f8a2f0260b25bee19e103ba355514b821f75",
     "src/lib/kb/DedupeExplorer.svelte": "a2e82e5c097f400c4f442a53daf5c390eb1953a4a378e1c9ea66a9bd46c18e8b",
+    "src/lib/kb/DeskUpdate.svelte": "4de74e56a72ea97ba491482570c874472d6ce3bd1bfb8a3985cece7c8ccd53ac",
     "src/lib/kb/KbIndex.svelte": "5084fe95474b30dd62b2f45df418daf5156a12ea0de7a96bd3cae42f994376f6",
     "src/lib/kb/QueueTimeline.svelte": "a913a00db9266825995c8efd13a0bf1ccfe86b555cbeb2e5e053db8d01d103af",
     "src/lib/kb/RenderStamp.svelte": "4f086a072cddb3a15fe24821ff1f0f9165f38514702b3f1ced6b66e003a7f2ba",
@@ -32,14 +34,14 @@
     "src/routes/kb/+page.svx": "e286b52641a151e56077aa27e1d5ef1d3d7847aec50f47c1134b0ea6bd9d9b3a",
     "src/routes/kb/decisions/0001-dedupe-by-subject/+page.svx": "41ac5460f198519b61b72c1a344a89fc3f9c26eda481ad85d710fa23f336a1c9",
     "src/routes/kb/decisions/0002-dedupe-by-evidence/+page.svx": "91ce4b2d7ec0ac5d8919fff14d086a195abec63f8f1791b8eea0325db1a5f20c",
-    "src/routes/kb/incidents/4471-review/+page.svx": "4279bcdc3c5b6353ecf75d66fc43a2f9e86a215939f9b4e0445ae18deef1f00f",
-    "src/routes/kb/incidents/4471/+page.svx": "da67fcd6541e314727079bb2aa1ed418a6041d2d9c0f4a546142cf2ba85f0888",
+    "src/routes/kb/incidents/4471-review/+page.svx": "5afa016b5cf38bdeb4880dc35bdd4ef8d83afcb32d241eed12028bfe986404f7",
+    "src/routes/kb/incidents/4471/+page.svx": "51f29aa22833057b1cf423e778de192b95d4aba17910578cf677b287dbac058e",
     "src/routes/kb/triage/dedupe/+page.svx": "c30d6e394cb0237e725aa66fc32a41d55c2e3cc94084de35dc316979c317a92a",
     "package.json": "af76cb560750f6d4c3221aee4245382d8dd63de08afc2e8cce67b03f92517bdd",
     "package-lock.json": "8cddc1987f82a3cd232a7cffc20e7cfae13c703b12c25e4b2bb8e715ef3836e5",
     "vite.config.js": "c34375b44cf8800d5a8deb42d4d226aa0440ddf900f6b92c71d087e74abf1a0f",
     "scripts/render.mjs": "31d0f64488deae628522593ddfe926960b9bc24789ea2409e6ff0f2fddeb5887",
-    "scripts/kb-check.mjs": "f72d3eb71f47195ba9c78e51cc1f8acb4e508dc51c1859b2a763f389a1cf143b",
-    "knowledge/sources.json": "6964e5d0c2be848048edfd89e8eefd99478d9bca9a4ae3fc3b49c6fda99a06f9"
+    "scripts/kb-check.mjs": "3d512695dee46fa276f97f6944045b8a882d1bab6a173c93b179fe2e7b83138c",
+    "knowledge/sources.json": "6cdb396175f3654594eddf4c684f801454fb25b180d7d1b9d85cd9d56a09e937"
   }
 }

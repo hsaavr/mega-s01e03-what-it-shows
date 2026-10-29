@@ -5,10 +5,11 @@
     "Signed source and rendered review",
     "Proposed evidence-based triage",
     "Local source-change and knowledge-health checks",
-    "Published public repo and two verified defect issues and preserved symptom notes"
+    "Published public repo and two verified defect issues and preserved symptom notes",
+    "Ingested subsequent engineering update; closed accepted issues with fixed versus retired dispositions"
   ],
   "active": [
-    "Submit two focused defect issues and signed KB review; speculative symptom ticket closed"
+    "Submit closed accepted tickets and updated signed KB page; final course acceptance pending"
   ],
   "planned": [
     "Desk follow-up: investigate one-day-shift root cause using missing runtime evidence"

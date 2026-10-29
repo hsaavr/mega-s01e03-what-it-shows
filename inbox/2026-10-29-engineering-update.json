@@ -1,0 +1,14 @@
+{
+  "id": "desk-engineering-update-2026-10-29",
+  "type": "tracker-update",
+  "status": "processed",
+  "source_set": "4471-desk-update",
+  "source": "src/lib/data/desk-update-4471.json",
+  "received_on": "2026-10-29",
+  "summary": "The course page now reports #4471 closed 05 Oct: date reader fixed; booking-v3 hint will not be fixed because that form was retired. Record reported dispositions distinctly from local validation.",
+  "filed_in": [
+    "src/routes/kb/incidents/4471-review/+page.svx",
+    "src/routes/kb/incidents/4471/+page.svx",
+    "evidence/published-issues.json"
+  ]
+}

@@ -23,3 +23,9 @@ Expected: the visible guidance and actual interpretation agree and preserve the 
 Align the visible hint, validation, and actual input convention for each affected tenant locale. Verify ambiguous pairs, days above 12, confirmation and invitation values. Vary browser locale while keeping tenant settings fixed. A string-only change passes only when following the displayed guidance yields the intended date end to end.
 
 Evidence and exact report IDs: `evidence/report-audit.json`, the tenant directory, and `DATE_HINT` in `src/lib/kb/causes.ts`. Recompute with `node scripts/analyze.mjs`. This issue requests one fix: make booking-v3's visible date guidance agree with its actual interpretation.
+
+## Desk disposition
+
+The course engineering update reports WON'T FIX: booking-v3 form retired. #4471 is marked closed 05 Oct. This is retirement, not a claim that the field guidance was repaired.
+
+Source: [course engineering update](https://hq.mega.dev/challenges/what-it-shows), observed 29 October 2026.

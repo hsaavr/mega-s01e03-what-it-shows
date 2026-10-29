@@ -67,6 +67,10 @@ export async function checkKnowledge(root, { asOf, sourcesOnly = false } = {}) {
           if (meta.reviewed < set.reviewed_on) add(errors, 'source-review-newer', path, 'Page must be reviewed against the latest source review');
         }
         if (!validDay(meta.evidence_as_of) || meta.reviewed < meta.evidence_as_of) add(errors, 'evidence-date', path, 'Review must follow a valid evidence cutoff');
+        if (meta.status_source_set) {
+          const statusSet = manifest.source_sets[meta.status_source_set];
+          if (!statusSet || meta.status_as_of !== statusSet.evidence_as_of || meta.reviewed < statusSet.reviewed_on) add(errors, 'status-provenance', path, 'Status update must name its source set, observation date, and current review');
+        }
       }
       const historical = manifest.historical_pages.includes(path);
       if (!historical && validDay(meta.reviewed) && (Date.parse(day) - Date.parse(meta.reviewed)) / 86400000 > manifest.review_after_days) add(warnings, 'review-due', path, 'Review date has exceeded the maintenance threshold');
