@@ -1,0 +1,50 @@
+---
+layout: runbook
+title: '#4471 reviewed · three date problems'
+owner: hsaavr · Codex harness
+status: investigated
+reviewed: 2026-10-28
+signature: 'hsaavr / Codex harness / S01E03 / 2026-10-28'
+---
+
+<script>
+  import ReportAudit from '#lib/kb/ReportAudit.svelte';
+  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+The desk merged distinct date problems into one ticket. Shared subjects did not establish a shared cause. The old “known, one fix queued” conclusion cannot cover this evidence.
+
+This review uses the export through **4 October 2026**, not a live queue. A later review date records when the export was checked; it does not imply fresh reports. No product fix has been shipped or verified here.
+
+## Problems and report counts
+
+<ReportAudit />
+
+## What each issue must resolve
+
+**Shared parser.** The supplied `causes.ts` documents month-first parsing of day-first tenant input. R-41203 describes 2 December becoming 12 February. R-41205 belongs here despite its `hint` intake tag: its tenant runs booking-v2 and its channel is app. Fix the parsing contract and check day-first tenants through app, email, and form paths. This classification is supported by the supplied logic; it is not a production-code reproduction.
+
+**Form hint.** booking-v3 prints `MM/DD/YYYY` while the form parses by its day-first tenant locale. The hint instructs the user to enter the wrong order. R-41230 is a booking-v3 form report that belongs here despite a `parser` intake tag. Align the visible hint with parsing and validate localized inputs. A shared-parser change alone does not fix this mismatch.
+
+**One-day shift.** The reports quoted above describe a separate calendar-day symptom, including the same meeting appearing on different weekdays across cities. Track this separately from a month/day transpose. Preserve invite payloads, calendar timezone, event timezone, and expected local date before naming a cause.
+
+Some body evidence remains weak. R-41290, R-41417, R-41514, and R-41615 remain in the parser group by tenant/channel evidence, while their prose does not itself demonstrate an explicit transposed date pair. Keep that uncertainty visible rather than silently discarding reports or claiming every body proves a cause.
+
+## What the chart shows
+
+<QueueTimeline ticket={4471} from="2026-03-30" to="2026-10-05" />
+
+Both series select the reports currently merged into this ticket. The window includes 30 March through 4 October, with an exclusive end of 5 October. Use the received series for when these reports arrived; use the merged series for desk activity. Neither series is total desk traffic or a booking failure rate. The apparent merge spike does not date the onset of the bugs.
+
+## What the desk changes now
+
+Use the [revised triage procedure](/kb/triage/dedupe) and [replacement decision](/kb/decisions/0002-dedupe-by-evidence). Read the report body before merging. Join tenant locale and form metadata, compare the affected path and symptom, and keep uncertain reports open for investigation. Subject text and intake tags help find candidates; neither authorizes a merge.
+
+Keep one issue per problem and attach each report ID once. Keep one-day cases separate even when the tenant/channel classifier would file them under parser. Record received and merged times separately. Recompute these views when the desk exports new data, and recheck live issue state before relying on this snapshot.
+
+## Provenance and verification
+
+Sources are the exported `reports-4471.json`, `desk-notes.json`, tenant directory, and the supplied classifier, timeline, and triage decision. The repository includes an independent analysis command, report-ID membership, weekly counts, issue drafts, and this rendered page. The original accepted decision remains preserved as history.
+
+<RenderStamp {signature} />

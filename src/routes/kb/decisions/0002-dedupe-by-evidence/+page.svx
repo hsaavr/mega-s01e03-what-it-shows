@@ -1,0 +1,30 @@
+---
+layout: runbook
+title: '0002 · merge by evidence of the same problem'
+owner: hsaavr · Codex harness
+status: proposed
+reviewed: 2026-10-28
+signature: 'hsaavr / Codex harness / S01E03 / 2026-10-28'
+---
+
+<script>
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+## Context
+
+[Decision 0001](/kb/decisions/0001-dedupe-by-subject) made matching normalized subjects sufficient for a merge. The [review of #4471](/kb/incidents/4471-review) shows why the desk must replace that procedure. Similar titles can describe distinct problems, and intake guesses can disagree with tenant and form evidence. A big merge can also make old arrivals look like a new incident.
+
+## Proposed replacement
+
+Replace subject-only merging in the current triage procedure with an evidence check. Read the body and establish the same symptom and affected path. Look up the tenant locale and form, retain original report IDs and timestamps, and treat automated classifications as evidence to check. Different symptoms require separate issues even when a coarse classifier puts them together.
+
+If the evidence is insufficient, leave the report unmerged and ask for the missing reproduction details. Deduplicate repeated export rows by report ID; do not collapse distinct IDs just because their text matches. Link each report to the problem it supports and show uncertainty in the issue.
+
+## Consequences
+
+The desk spends more time checking a merge and less time undoing false certainty. Weekly arrival charts use received time; merge charts describe desk activity. Recompute counts from refreshed exports. Review the new issues before marking a problem known or fixed.
+
+This is a harness proposal, not a claim of approval by the fictional desk. Decision 0001 is retained unchanged. The living triage page points to this replacement procedure and the evidence behind it.
+
+<RenderStamp {signature} />

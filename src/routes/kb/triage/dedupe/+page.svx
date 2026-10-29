@@ -1,0 +1,34 @@
+---
+layout: runbook
+title: 'Triage: check evidence before merging'
+owner: hsaavr · Codex harness
+status: proposed replacement
+reviewed: 2026-10-28
+signature: 'hsaavr / Codex harness / S01E03 / 2026-10-28'
+---
+
+<script>
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+Keep one ticket per underlying problem. A matching subject is a search clue, not proof that reports describe the same issue. This procedure replaces the unsafe subject-only guidance; [decision 0002](/kb/decisions/0002-dedupe-by-evidence) records the proposed replacement and [#4471's review](/kb/incidents/4471-review) supplies the evidence.
+
+## Before merging
+
+1. Read the body. Record expected and actual behavior, affected path, tenant, and reproduction evidence.
+2. Join the tenant directory. Check tenant locale, form version, and channel. Browser locale and intake tags can mislead.
+3. Compare the symptom and mechanism with the open issue. A day/month transpose differs from a one-day shift. A parser defect differs from a form hint that contradicts parsing.
+4. Merge only when the evidence supports the same problem. Otherwise open or link a separate issue. Deduplicate overlapping export rows by report ID, while retaining distinct IDs.
+5. Preserve received time and merged time separately. Update computed counts from the refreshed export, then review the rendered page.
+
+## When evidence is incomplete
+
+Leave the report unmerged for investigation. Ask for the exact input, expected date, actual date, tenant settings, path, version, and relevant invite/calendar details. Mark the uncertainty so the next reader can see it.
+
+The supplied classifier recognizes parser and hint paths. Its same-cause result is a screening clue; it does not read the body or detect every symptom. The desk's one-day notes must be checked separately.
+
+## Historical policy
+
+[Decision 0001](/kb/decisions/0001-dedupe-by-subject) remains unchanged as the record of what the desk accepted in 2024. Its subject-only rule caused false merges in this export and must not guide the current investigation. This replacement is a harness proposal for the desk to review, not a claim that the desk has approved it.
+
+<RenderStamp {signature} />

@@ -1,0 +1,21 @@
+---
+layout: runbook
+title: '#4471 · distinct date problems merged together'
+owner: hsaavr · Codex harness
+status: review required
+reviewed: 2026-10-28
+signature: 'hsaavr / Codex harness / S01E03 / 2026-10-28'
+---
+
+<script>
+  import ReportAudit from '#lib/kb/ReportAudit.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+The previous version called this one month-first parser issue with one fix queued. The export contradicts that conclusion. Read the [full signed review](/kb/incidents/4471-review) for the evidence, limitations, received/merged timeline, and separate issue links.
+
+<ReportAudit />
+
+This page describes the export through 4 October 2026. Refresh the data and verify current issue state before relying on it. No fix is established by this review. Follow the [revised triage procedure](/kb/triage/dedupe) to avoid merging distinct problems while the investigation continues.
+
+<RenderStamp {signature} />
