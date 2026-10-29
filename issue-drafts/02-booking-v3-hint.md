@@ -1,38 +1,25 @@
-# Booking-v3 shows a month-first hint while reading dates day first — 33 reports
+# Booking-v3 date-field hint contradicts tenant interpretation — 33 reports
 
 Publication record for [2](https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/2).
 
-The booking-v3 form tells day-first tenants to enter `MM/DD/YYYY`, while the form reads the tenant's day-first convention. A person following the hint can supply a valid date that represents a different appointment. The supplied diagnostic comments in `src/lib/kb/causes.ts` (lines 36–42) identify this separately from the shared parser; the `DATE_HINT` values are booking-v2 `DD/MM/YYYY` and booking-v3 `MM/DD/YYYY`.
+## Problem and coverage
 
-## Evidence and scope
+The booking-v3 form prints `MM/DD/YYYY` while it interprets input using its day-first tenant locale. A person following that guidance can book a different date than intended. The exported desk view assigns **33 distinct reports** to this form-guidance problem.
 
-- **33 distinct reports**, all with a known day-first tenant, `channel === 'form'`, and tenant `form === 'booking-v3'`. First received April 17, 2026; last received September 22, 2026.
-- All **33 bodies explicitly contain transposed day/month dates**. Tenant counts: Alder Physio **12**, Copper Studio **11**, Pale Harbour **10**.
-- `R-41230`, Copper Studio, booking-v3/form, browser `en-GB`: client came on 1 June instead of 6 January. Its intake guess says `parser`, but the documented form path places it here.
-- `R-41251`, Pale Harbour, booking-v3/form, browser `pt-PT`: 7 January showed as 1 July. Its duplicated export row is counted once.
-- `R-41241`, Alder Physio, booking-v3/form, browser `en-US`: clients came on 8 June instead of 6 August. Its intake guess happens to match this classification.
-- **15** final hint reports carry the wrong `parser` intake tag; **18** carry `hint`. Conversely, **23** other reports carry `hint` but belong to the parser group. An `en-US` browser is not sufficient to select this cause.
+Affected reports have `channel === 'form'`, a known day-first tenant, and tenant form `booking-v3`. Tenant coverage is Alder Physio 12, Copper Studio 11, and Pale Harbour 10. R-41230 describes a client coming on 1 June instead of 6 January; R-41241 describes 8 June instead of 6 August.
 
-Inspect `evidence/report-audit.json` for report IDs, original tags, source lines, and the exact grouping. Reproduce with `node scripts/analyze.mjs`. No source code fix is included in this ticket.
+## Reproduction to verify
 
-## Reproduction recipe
+This follows the supplied diagnostic behavior and has not been executed against a production booking UI.
 
-This recipe follows the supplied diagnostic behavior; it has not been executed against a booking UI.
+1. Open Copper Studio's booking-v3 form (`es-ES`).
+2. Intend 7 April 2026 and follow `MM/DD/YYYY` by entering `04/07/2026`.
+3. Inspect the interpreted date, confirmation, and invitation.
 
-1. Open a booking-v3 form for a day-first tenant, such as Copper Studio (`es-ES`).
-2. Intend **7 April 2026** and follow the displayed `MM/DD/YYYY` hint, entering `04/07/2026`.
-3. Submit the form and inspect the date it understands, its confirmation, and downstream invite.
+Expected: the visible guidance and actual interpretation agree and preserve the intended 7 April. Documented faulty behavior: the form interprets the value as 4 July.
 
-Expected: displayed guidance and actual interpretation agree, and the intended date is preserved. Documented current behavior: the hint requests month first while tenant parsing reads day first, so this example is interpreted as **4 July 2026**. Align the guidance with actual tenant parsing and keep that agreement through downstream processing.
+## Acceptance
 
-## Acceptance tests
+Align the visible hint, validation, and actual input convention for each affected tenant locale. Verify ambiguous pairs, days above 12, confirmation and invitation values. Vary browser locale while keeping tenant settings fixed. A string-only change passes only when following the displayed guidance yields the intended date end to end.
 
-- For every booking-v3 tenant locale, the rendered hint, validation message, parsed value, confirmation, and calendar invite agree on the date convention.
-- Test ambiguous boundary pairs, including 7 April/4 July and 6 January/1 June, plus valid dates with day above 12 such as 13 April.
-- Repeat with browser locales `en-US`, `en-GB`, and the tenant locale while holding tenant settings fixed. The browser-derived intake tag must not affect rendering or parsing.
-- Verify that any hint localization produces the actual tenant convention. A display-only string change passes only when the submitted date is correct end to end.
-- Verify booking-v2 guidance and all shared parser paths for regression; their cause classification is tracked separately in the parser issue.
-
-## Counting and trend limits
-
-The 33 hint cases are disjoint from the **379** parser-filed reports. The separate **5** one-day flags are already included in parser filing and do not add to the **412** distinct reports. Received monthly hint counts are April **3**, May **6**, June **2**, July **14**, August **4**, September **4**, and October **0** through October 4. These are report counts with no booking-volume denominator or deployment history, so the decline after July does not prove a fix. Use the audit's `receivedAt` cohorts rather than merge dates.
+Evidence and exact report IDs: `evidence/report-audit.json`, the tenant directory, and `DATE_HINT` in `src/lib/kb/causes.ts`. Recompute with `node scripts/analyze.mjs`. This issue requests one fix: make booking-v3's visible date guidance agree with its actual interpretation.

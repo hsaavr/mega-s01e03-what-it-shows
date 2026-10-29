@@ -1,38 +1,25 @@
-# Shared parser path — 379 reports in the exported desk view
+# Shared date parser reads day-first input month first — 379 reports
 
 Publication record for [1](https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/1).
 
-For a tenant that writes dates day first, an intended appointment date such as 7 April becomes 4 July. The supplied diagnostic comments in `src/lib/kb/causes.ts` (lines 36–42) describe the shared parser reading every date month first. Its interpretation must agree with the tenant's date convention.
+## Problem and coverage
 
-## Evidence and scope
+The shared date-reading path interprets a day-first tenant's date month first. The exported desk view assigns **379 distinct reports** to this problem. This is the view's filing count, after report-ID deduplication. See the KB review for the full reconciliation and confidence limits.
 
-- **379 distinct reports in the exported parser filing.** First received April 1, 2026; last received October 4, 2026. The desk's view retains all five `desk-notes.oneDayMove` reports inside this group and footnotes them; the separate one-day investigation overlaps this ticket's coverage.
-- **370** bodies explicitly show a day/month transposition. Four reports have weaker body detail: `R-41290`, `R-41417`, `R-41514`, `R-41615`. Five more are the separately flagged one-day cases. Thus 374 is the derived residual excluding flags, not the exported parser total. These filing counts do not prove that every report has one root cause.
-- All 11 tenant locales in `src/lib/data/tenants/` have day before month under the exact `Intl.DateTimeFormat(...).formatToParts` check. Exported parser membership is a known day-first tenant outside the booking-v3/form conjunction. Preserve the one-day flags inside that filing group when counting coverage.
-- `R-41200`, Harbour Dental, `en-GB`, booking-v2, app: “Our 7 April reminder went out on 4 July.” `R-41201` is a separately identified correction with the reverse dates. Both remain distinct report IDs; the export has no booking identity to establish incident deduplication.
-- `R-41205`, Morrow Tax, booking-v2/app: booked 3 October, invite 10 March. Its `en-US` browser causes the intake guess to say `hint`, but the tenant/form/channel classifier places it here.
-- `R-41370`, Pale Harbour, booking-v3/**email**: 9 December became 12 September. Booking-v3 alone does not establish the form hint path.
+The behavior is documented by `causeOf` and its comments in `src/lib/kb/causes.ts`. For example, R-41203 reports that a booking for 2 December produced an invite for 12 February. R-41200 describes 7 April appearing as 4 July.
 
-The audit reads `src/lib/data/reports-4471.json`, tenant metadata, and desk notes. Inspect `evidence/report-audit.json` for all IDs and source lines. Reproduce the audit with `node scripts/analyze.mjs`.
+## Reproduction to verify
 
-## Reproduction recipe
+This follows the supplied diagnostic logic and has not been executed against a production booking UI.
 
-This recipe is derived from documented diagnostic behavior; it has not been executed against a booking UI.
+1. Use Harbour Dental's `en-GB` tenant and the shared date-reading path.
+2. Enter `07/04/2026`, intending 7 April 2026.
+3. Inspect the interpreted appointment and generated invitation.
 
-1. Select Harbour Dental (`en-GB`, booking-v2) and the shared parser path represented by an app booking.
-2. Supply `07/04/2026`, explicitly intending **7 April 2026** under the tenant's day-first convention.
-3. Observe the parsed appointment and its calendar invite.
+Expected: 7 April. Documented faulty behavior: 4 July.
 
-Expected: the appointment and invite represent 7 April 2026. Documented current behavior: month-first parsing interprets the same input as 4 July 2026. Browser locale must not substitute for the tenant convention.
+## Acceptance
 
-## Acceptance tests
+Make interpretation follow the tenant's date convention consistently through storage, reminders, and invitations. Cover ambiguous values such as `07/04/2026`, valid days above 12 such as `13/04/2026`, invalid dates, and browser-locale changes with tenant settings held fixed.
 
-- Ambiguous day-first dates such as `07/04/2026` and `03/10/2026` preserve 7 April and 3 October through parsing, storage, reminders, and invitation generation.
-- Valid dates with a day above 12, including `13/04/2026`, remain valid and exact. Invalid dates are rejected explicitly rather than silently normalized.
-- Cover every tenant locale in the export; vary browser locale independently, including `en-US` and `en-GB`.
-- Verify all actual booking entry paths that call the shared parser, and both form versions where that parser applies. The report's `channel` field is the classifier input; confirm its relationship to runtime entry paths during implementation.
-- Keep a regression fixture for the five desk-noted day-shift IDs separately flagged within the parser filing; this fix does not establish their root cause or resolution.
-
-## Counting limits
-
-The export contains 427 rows, **412 distinct report IDs**, and 15 identical replay rows. Counts represent reports, not bookings or affected-user rates. Tenant form metadata is not historically versioned. Final classification follows the supplied diagnostic logic, rather than the browser-derived `intakeTag` guess. The broader incoming-report trend must use `receivedAt`; the July 2 merge backlog is not an onset spike.
+Evidence and exact report IDs: `evidence/report-audit.json`. Recompute with `node scripts/analyze.mjs`. The count measures reports, not bookings or affected-user rates. This issue requests one fix: correct this shared date-reading behavior.

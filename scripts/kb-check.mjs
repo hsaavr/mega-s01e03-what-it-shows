@@ -78,7 +78,7 @@ export async function checkKnowledge(root, { asOf, sourcesOnly = false } = {}) {
   if (work.publication.status === 'not-published') add(warnings, 'publication-pending', 'knowledge/work.json', 'Issue links and course acceptance remain pending');
   else if (work.publication.status === 'published') {
     if (!validDay(work.publication.verified_on)) add(errors, 'tracker-unverified', 'knowledge/work.json', 'Published state needs a real tracker verification date');
-    for (const problem of ['parser', 'hint', 'one-day']) if (!/^https:\/\/github\.com\/hsaavr\/mega-s01e03-what-it-shows\/issues\/\d+$/.test(links[problem] ?? '')) add(errors, 'missing-issue-link', problem, 'Published problem needs a verified issue URL');
+    for (const problem of ['parser', 'hint']) if (!/^https:\/\/github\.com\/hsaavr\/mega-s01e03-what-it-shows\/issues\/\d+$/.test(links[problem] ?? '')) add(errors, 'missing-issue-link', problem, 'Published problem needs a verified issue URL');
   } else add(errors, 'publication-state', 'knowledge/work.json', 'Unknown publication state');
   for (const path of (await files(root, 'inbox')).filter((path) => path.endsWith('.json'))) {
     try {

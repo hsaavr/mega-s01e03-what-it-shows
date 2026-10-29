@@ -21,7 +21,7 @@ Keep one ticket per underlying problem. A matching subject is a search clue, not
 
 1. Read the body. Record expected and actual behavior, affected path, tenant, and reproduction evidence.
 2. Join the tenant directory. Check tenant locale, form version, and channel. Browser locale and intake tags can mislead.
-3. Compare the symptom and mechanism with the open issue. A day/month transpose differs from a one-day shift. A parser defect differs from a form hint that contradicts parsing.
+3. Compare the mechanism and affected path with the open issue. The shared date-reader defect and the booking-v3 guidance mismatch are distinct. A different reported symptom alone does not prove a different cause; retain uncertain symptom notes for review.
 4. Merge only when the evidence supports the same problem. Otherwise open or link a separate issue. Deduplicate overlapping export rows by report ID, while retaining distinct IDs.
 5. Preserve received time and merged time separately. Update computed counts from the refreshed export, then review the rendered page.
 

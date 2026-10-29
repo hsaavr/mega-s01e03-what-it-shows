@@ -7,12 +7,12 @@ For agent navigation and upkeep, start at [KNOWLEDGE.md](KNOWLEDGE.md) and the [
 - Signed review source: [4471-review/+page.svx](src/routes/kb/incidents/4471-review/+page.svx).
 - Desk page, rendered from that source with the supplied Svelte layout and data: [rendered review](rendered/kb/incidents/4471-review/index.html).
 - Reproducible evidence: [report audit and ID membership](evidence/report-audit.json), [weekly cohorts](evidence/weekly-cohorts.csv).
-- [Issue publication records](issue-drafts/) cover parser filing **379**, hint **33**, and one-day flags **5** using the exported desk view. The five flags are already included in parser; the distinct-report union is **412**, not the sum of overlapping issue coverage.
+- [Issue publication records](issue-drafts/) cover two supported paths: parser **379** and hint **33**, totaling **412** distinct reports. Five one-day symptom notes remain within parser filing; they do not establish another defect.
 - The original accepted decision 0001 is preserved unchanged; decision 0002 proposes evidence-based triage.
 
 The review covers the export through 4 October 2026. Its review date does not imply new queue data. One-day root cause remains unconfirmed. This repository documents problems; it does not contain a production booking-system fix.
 
-Live issues: [parser #1](https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/1), [form hint #2](https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/2), and [one-day investigation #3](https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/3). Course acceptance is still pending.
+Live issues: [parser #1](https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/1), [form hint #2](https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/2), with [closed speculative issue #3](https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/3) retained as history. Course acceptance is still pending.
 
 ## Reproduce
 
@@ -28,7 +28,7 @@ python3 -m http.server 8763 --bind 127.0.0.1 --directory rendered
 
 Open `http://127.0.0.1:8763/kb/incidents/4471-review/` to inspect the page and its desk reference. The renderer compiles the actual `.svx` and imported Svelte components with mdsvex, the `#lib` alias, Vite glob loading, and server rendering. Styles are injected into each standalone HTML page. Native disclosure controls work without JavaScript; this export does not hydrate Svelte client interactions.
 
-The independent analysis command reads only the dataset and tenant metadata. Verification compares its report membership with the page's classifier, checks rendered counts and the signature, validates internal links, and checks that accepted decision 0001 still matches the original export.
+The independent analysis command reads only the dataset and tenant metadata. Its overlapping diagnostic flag group is an annotation, not another open issue. Verification compares its report membership with the page's classifier, checks rendered counts and the signature, validates internal links, and checks that accepted decision 0001 still matches the original export.
 
 ---
 

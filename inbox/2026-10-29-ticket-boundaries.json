@@ -1,0 +1,15 @@
+{
+  "id": "ticket-boundaries-2026-10-29",
+  "type": "correction",
+  "status": "processed",
+  "source_set": "4471-export",
+  "source": "https://hq.mega.dev/challenges/what-it-shows",
+  "received_on": "2026-10-29",
+  "summary": "Keep one supported cause per ticket. The executable view defines two defect paths; retain the five symptom flags in KB notes and close the unsupported third defect ticket.",
+  "filed_in": [
+    "src/routes/kb/incidents/4471-review/+page.svx",
+    "issue-drafts/01-parser-day-first.md",
+    "issue-drafts/02-booking-v3-hint.md",
+    "issue-drafts/03-investigate-one-day-shifts.md"
+  ]
+}

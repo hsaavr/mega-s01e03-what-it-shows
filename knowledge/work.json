@@ -5,10 +5,10 @@
     "Signed source and rendered review",
     "Proposed evidence-based triage",
     "Local source-change and knowledge-health checks",
-    "Published public repo and three verified live GitHub issues"
+    "Published public repo and two verified defect issues and preserved symptom notes"
   ],
   "active": [
-    "Resubmit corrected exported filing counts: parser379 and hint33, with five one-day flags overlapping parser"
+    "Submit two focused defect issues and signed KB review; speculative symptom ticket closed"
   ],
   "planned": [
     "Desk follow-up: investigate one-day-shift root cause using missing runtime evidence"

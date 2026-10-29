@@ -1,6 +1,6 @@
 ---
 layout: runbook
-title: '#4471 reviewed · three date problems'
+title: '#4471 reviewed · two defect paths and symptom notes'
 owner: hsaavr · Codex harness
 status: investigated
 reviewed: 2026-10-28
@@ -17,7 +17,7 @@ source_set: 4471-export
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
 </script>
 
-The desk merged distinct date problems into one ticket. Shared subjects did not establish a shared cause. The old “known, one fix queued” conclusion cannot cover this evidence. Ticket coverage below follows the desk's exported filing view, including its overlapping symptom flags.
+The desk merged two date defect paths into one ticket. Shared subjects did not establish a shared cause. The old “known, one fix queued” conclusion cannot cover this evidence. Ticket coverage below follows the desk's exported filing view; symptom notes remain within their original group.
 
 This review uses the export through **4 October 2026**, not a live queue. A later review date records when the export was checked; it does not imply fresh reports. No product fix has been shipped or verified here.
 
@@ -31,7 +31,9 @@ This review uses the export through **4 October 2026**, not a live queue. A late
 
 **Form hint.** booking-v3 prints `MM/DD/YYYY` while the form parses by its day-first tenant locale. The hint instructs the user to enter the wrong order. R-41230 is a booking-v3 form report that belongs here despite a `parser` intake tag. Align the visible hint with parsing and validate localized inputs. A shared-parser change alone does not fix this mismatch.
 
-**One-day shift.** The reports quoted above describe a separate calendar-day symptom, including the same meeting appearing on different weekdays across cities. Track this separately from a month/day transpose. Preserve invite payloads, calendar timezone, event timezone, and expected local date before naming a cause.
+## Unconfirmed symptom notes
+
+The one-day reports quoted above describe calendar-day symptoms, including the same meeting appearing on different weekdays across cities. They are not a third cause in the exported model. Preserve invite payloads, calendar timezone, event timezone, and expected local date before proposing another defect. R-41236 does not itself establish a one-day move or a separate scheduling failure. The earlier speculative third ticket is closed; its evidence remains in these notes.
 
 Some body evidence remains weak. R-41290, R-41417, R-41514, and R-41615 remain in the parser group by tenant/channel evidence, while their prose does not itself demonstrate an explicit transposed date pair. Keep that uncertainty visible rather than silently discarding reports or claiming every body proves a cause.
 
@@ -45,7 +47,7 @@ Both series select the reports currently merged into this ticket. The window inc
 
 Use the [revised triage procedure](/kb/triage/dedupe) and [replacement decision](/kb/decisions/0002-dedupe-by-evidence). Read the report body before merging. Join tenant locale and form metadata, compare the affected path and symptom, and keep uncertain reports open for investigation. Subject text and intake tags help find candidates; neither authorizes a merge.
 
-Keep one issue per problem and count each report ID once within that issue. The one-day investigation references the flagged subset already included in parser filing; preserve and label that overlap. Record received and merged times separately. Recompute these views when the desk exports new data, and recheck live issue state before relying on this snapshot.
+Keep one issue per verified problem path and count each report ID once within that issue. Preserve the one-day annotations inside parser filing without promoting an uncertain symptom into a new root cause. Record received and merged times separately. Recompute these views when the desk exports new data, and recheck live issue state before relying on this snapshot.
 
 ## Provenance and verification
 

@@ -6,17 +6,17 @@
 
 <p><strong>{audit.unique} distinct reports</strong> from {audit.rawRows} exported rows; {audit.repeatedRows} repeated rows removed by report ID. Counts measure reports, not customers or bookings.</p>
 <table>
-  <caption>Issue coverage in the exported desk view; one-day flags overlap parser</caption>
+  <caption>Two problem paths in the exported desk view</caption>
   <thead><tr><th>Problem</th><th>Reports</th><th>Tenants</th><th>Received</th><th>Ticket</th></tr></thead>
   <tbody>
-    {#each groups as g (g.problem)}
+    {#each groups.filter((g) => g.problem !== 'one-day') as g (g.problem)}
       <tr><td>{g.label}</td><td><strong>{g.count}</strong></td><td>{g.tenants}</td><td><time>{g.first}</time><br />→ <time>{g.last}</time></td><td>{#if links[g.problem]}<a href={links[g.problem]}>GitHub issue</a>{:else}<span>Local draft</span>{/if}</td></tr>
     {/each}
   </tbody>
 </table>
 
 <h3>How the counts were checked</h3>
-<p>The exported tenant/channel classifier gives parser {audit.coarseParser} and hint {audit.coarseHint}. The {oneDayIds.size} desk-noted one-day reports stay inside the parser filing and are tracked separately as a symptom flag. Do not add the issue rows to obtain a distinct-report total: they contain overlapping coverage.</p>
+<p>The exported tenant/channel classifier gives parser {audit.coarseParser} and hint {audit.coarseHint}, covering {audit.unique} distinct reports. The {oneDayIds.size} desk-noted one-day reports stay inside the parser filing as a symptom flag. The supplied view does not establish a third cause, so those notes do not create another defect ticket or add to the total.</p>
 <p>Removing the flagged subset gives a derived residual of {audit.parserExcludingFlags} parser-filed reports. That residual is not the desk's parser count. Filing counts describe the exported view; they do not prove the same root cause for every report.</p>
 <p>{audit.misleadingTags} intake tags disagree with the tenant/channel classifier. Intake tags reflect a browser-locale guess; they are not the problem identity. Deduplicate by ID, join the tenant directory, check its locale with <code>Intl.DateTimeFormat</code>, and use the channel and actual form version.</p>
 

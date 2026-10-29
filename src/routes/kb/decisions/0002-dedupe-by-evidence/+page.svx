@@ -22,7 +22,7 @@ supersedes: /kb/decisions/0001-dedupe-by-subject
 
 ## Proposed replacement
 
-Replace subject-only merging in the current triage procedure with an evidence check. Read the body and establish the same symptom and affected path. Look up the tenant locale and form, retain original report IDs and timestamps, and treat automated classifications as evidence to check. Different symptoms require separate issues even when a coarse classifier puts them together.
+Replace subject-only merging in the current triage procedure with an evidence check. Read the body and establish the affected path and supported mechanism. Look up the tenant locale and form, retain original report IDs and timestamps, and check the executable classification against the evidence. Separate supported problems into separate issues; a different symptom alone does not establish another cause.
 
 If the evidence is insufficient, leave the report unmerged and ask for the missing reproduction details. Deduplicate repeated export rows by report ID; do not collapse distinct IDs just because their text matches. Link each report to the problem it supports and show uncertainty in the issue.
 
