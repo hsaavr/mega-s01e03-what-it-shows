@@ -1,6 +1,7 @@
 import { createServer } from 'vite';
 import { mkdir, writeFile, readdir } from 'node:fs/promises';
 import { join, relative, dirname } from 'node:path';
+import { inputHashes } from './kb-check.mjs';
 
 const root = process.cwd();
 const server = await createServer({ server: { middlewareMode: true }, appType: 'custom' });
@@ -25,6 +26,7 @@ try {
     await writeFile(output, `<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">${head}</head><body>${body}</body></html>\n`);
     console.log(relative(root, output));
   }
+  await writeFile(join(root, 'rendered/manifest.json'), JSON.stringify({ generatedAt: new Date().toISOString(), inputs: await inputHashes(root) }, null, 2) + '\n');
 } finally {
   await server.close();
 }

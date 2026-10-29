@@ -2,6 +2,8 @@
 
 MEGA.dev course work by `hsaavr` with a Codex harness. The support desk and reports are course story material.
 
+For agent navigation and upkeep, start at [KNOWLEDGE.md](KNOWLEDGE.md) and the [maintenance skill](.agents/skills/support-kb-maintain/SKILL.md). New evidence enters through [inbox/](inbox/README.md); run `npm run kb:check` to detect changed sources, incomplete metadata, and stale generated pages. `npm run kb:refresh` rebuilds and verifies after evidence has been reviewed.
+
 - Signed review source: [4471-review/+page.svx](src/routes/kb/incidents/4471-review/+page.svx).
 - Desk page, rendered from that source with the supplied Svelte layout and data: [rendered review](rendered/kb/incidents/4471-review/index.html).
 - Reproducible evidence: [report audit and ID membership](evidence/report-audit.json), [weekly cohorts](evidence/weekly-cohorts.csv).

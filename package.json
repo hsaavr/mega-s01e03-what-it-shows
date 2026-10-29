@@ -6,6 +6,9 @@
     "analyze": "node scripts/analyze.mjs",
     "render": "node scripts/render.mjs",
     "verify": "node scripts/verify.mjs",
+    "kb:check": "node scripts/kb-check.mjs",
+    "kb:refresh": "node scripts/kb-check.mjs --sources-only && npm run analyze && npm run render && npm run verify && npm run kb:check",
+    "kb:test": "node --test scripts/kb-check.test.mjs",
     "dev": "vite --host 127.0.0.1"
   },
   "devDependencies": {

@@ -5,6 +5,10 @@ owner: hsaavr · Codex harness
 status: review required
 reviewed: 2026-10-28
 signature: 'hsaavr / Codex harness / S01E03 / 2026-10-28'
+kind: incident-pointer
+confidence: mixed; see full review
+evidence_as_of: 2026-10-04
+source_set: 4471-export
 ---
 
 <script>

@@ -1,0 +1,14 @@
+{
+  "id": "kb-export-2026-10-04",
+  "type": "export",
+  "status": "processed",
+  "source_set": "4471-export",
+  "source": "src/lib/data/reports-4471.json",
+  "received_on": "2026-10-28",
+  "summary": "Reviewed the course KB export, separated report problems, and revised the living triage guidance.",
+  "filed_in": [
+    "src/routes/kb/incidents/4471-review/+page.svx",
+    "src/routes/kb/triage/dedupe/+page.svx",
+    "src/routes/kb/decisions/0002-dedupe-by-evidence/+page.svx"
+  ]
+}

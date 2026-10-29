@@ -5,6 +5,11 @@ owner: hsaavr · Codex harness
 status: proposed
 reviewed: 2026-10-28
 signature: 'hsaavr / Codex harness / S01E03 / 2026-10-28'
+kind: decision
+confidence: proposed from reviewed evidence
+evidence_as_of: 2026-10-04
+source_set: 4471-export
+supersedes: /kb/decisions/0001-dedupe-by-subject
 ---
 
 <script>

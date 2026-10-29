@@ -1,0 +1,22 @@
+---
+layout: runbook
+title: 'Describe the incident'
+owner: 'Name the accountable author'
+kind: incident-review
+status: investigating
+confidence: provisional
+reviewed: 'YYYY-MM-DD'
+evidence_as_of: 'YYYY-MM-DD'
+source_set: 'Name a reviewed source set in knowledge/sources.json'
+signature: 'Use an attributable signature'
+---
+
+<script>
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+State the problem, what is known, what remains uncertain, and the evidence cutoff. Link the authoritative evidence and related procedure/decision. Import components for computed findings rather than typing totals. Link live issues only after verifying they exist; label local drafts honestly.
+
+Explain what observation would confirm or change the finding, and where new evidence should enter the inbox. Adapt the structure to the incident.
+
+<RenderStamp {signature} />
