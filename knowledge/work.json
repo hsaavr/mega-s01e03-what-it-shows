@@ -1,9 +1,26 @@
 {
   "scope": "MEGA S01E03 support KB export",
-  "implemented": ["Independent report audit", "Signed source and rendered review", "Proposed evidence-based triage", "Local source-change and knowledge-health checks"],
-  "active": ["Course challenge remains unsolved; GitHub publication awaits human approval"],
-  "planned": ["Publish three issues and link the KB after approval", "Confirm course submission contract", "Investigate one-day-shift root cause using missing runtime evidence"],
-  "archived": ["Subject-only merging is retained in decision 0001 as historical policy"],
-  "publication": { "status": "not-published", "verified_on": null, "repository": "hsaavr/mega-s01e03-what-it-shows" },
+  "implemented": [
+    "Independent report audit",
+    "Signed source and rendered review",
+    "Proposed evidence-based triage",
+    "Local source-change and knowledge-health checks",
+    "Published public repo and three verified live GitHub issues"
+  ],
+  "active": [
+    "Course challenge remains unsolved; obtain its declared submission format and submit the published repo"
+  ],
+  "planned": [
+    "Confirm course submission contract",
+    "Desk follow-up: investigate one-day-shift root cause using missing runtime evidence"
+  ],
+  "archived": [
+    "Subject-only merging is retained in decision 0001 as historical policy"
+  ],
+  "publication": {
+    "status": "published",
+    "verified_on": "2026-10-28",
+    "repository": "hsaavr/mega-s01e03-what-it-shows"
+  },
   "automation": "on-demand; no recurring job or integration configured"
 }

@@ -1,6 +1,6 @@
 # Shared parser transposes day-first tenant dates — 374 reports
 
-Draft for `hsaavr/mega-s01e03-what-it-shows`. No issue has been published.
+Publication record for [1](https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/1).
 
 For a tenant that writes dates day first, an intended appointment date such as 7 April becomes 4 July. The supplied diagnostic comments in `src/lib/kb/causes.ts` (lines 36–42) describe the shared parser reading every date month first. Its interpretation must agree with the tenant's date convention.
 

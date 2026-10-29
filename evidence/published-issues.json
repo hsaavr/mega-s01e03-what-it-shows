@@ -1,0 +1,20 @@
+[
+  {
+    "cause": "parser",
+    "title": "Shared parser transposes day-first tenant dates \u2014 374 reports",
+    "url": "https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/1",
+    "draft": "issue-drafts/01-parser-day-first.md"
+  },
+  {
+    "cause": "hint",
+    "title": "Booking-v3 shows a month-first hint while reading dates day first \u2014 33 reports",
+    "url": "https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/2",
+    "draft": "issue-drafts/02-booking-v3-hint.md"
+  },
+  {
+    "cause": "one-day",
+    "title": "Investigate five separately noted date/day shifts; root cause unknown",
+    "url": "https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/3",
+    "draft": "issue-drafts/03-investigate-one-day-shifts.md"
+  }
+]

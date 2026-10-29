@@ -17,7 +17,13 @@ async function fixture(run) {
 test('current reviewed snapshot is healthy and publication stays explicit', async () => fixture(async (root) => {
   const result = await checkKnowledge(root, { asOf: '2026-10-28' });
   assert.deepEqual(result.errors, []);
-  assert(result.warnings.some((item) => item.code === 'publication-pending'));
+  const path = join(root, 'knowledge/work.json');
+  const work = JSON.parse(await readFile(path, 'utf8'));
+  work.publication.status = 'not-published';
+  work.publication.verified_on = null;
+  await writeFile(path, JSON.stringify(work));
+  const draft = await checkKnowledge(root, { asOf: '2026-10-28' });
+  assert(draft.warnings.some((item) => item.code === 'publication-pending'));
 }));
 test('a changed report invalidates evidence review and rendered output', async () => fixture(async (root) => {
   const path = join(root, 'src/lib/data/reports-4471.json');

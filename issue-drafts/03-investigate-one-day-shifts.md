@@ -1,6 +1,6 @@
 # Investigate five separately noted date/day shifts; root cause unknown
 
-Draft for `hsaavr/mega-s01e03-what-it-shows`. No issue has been published.
+Publication record for [3](https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/3).
 
 Five reports identified by `src/lib/data/desk-notes.json` concern a different date/day-shift symptom and must be separated from month/day transposition. **Root cause is unknown.** A timezone boundary or date-only conversion is a hypothesis to investigate, not a confirmed diagnosis.
 

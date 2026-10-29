@@ -1,6 +1,6 @@
 # Booking-v3 shows a month-first hint while reading dates day first — 33 reports
 
-Draft for `hsaavr/mega-s01e03-what-it-shows`. No issue has been published.
+Publication record for [2](https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/2).
 
 The booking-v3 form tells day-first tenants to enter `MM/DD/YYYY`, while the form reads the tenant's day-first convention. A person following the hint can supply a valid date that represents a different appointment. The supplied diagnostic comments in `src/lib/kb/causes.ts` (lines 36–42) identify this separately from the shared parser; the `DATE_HINT` values are booking-v2 `DD/MM/YYYY` and booking-v3 `MM/DD/YYYY`.
 
@@ -13,7 +13,7 @@ The booking-v3 form tells day-first tenants to enter `MM/DD/YYYY`, while the for
 - `R-41241`, Alder Physio, booking-v3/form, browser `en-US`: clients came on 8 June instead of 6 August. Its intake guess happens to match this classification.
 - **15** final hint reports carry the wrong `parser` intake tag; **18** carry `hint`. Conversely, **23** other reports carry `hint` but belong to the parser group. An `en-US` browser is not sufficient to select this cause.
 
-Inspect `evidence/report-audit.json` for report IDs, original tags, source lines, and the exact grouping. Reproduce with `node scripts/analyze.mjs`. No source code fix is included in this issue draft.
+Inspect `evidence/report-audit.json` for report IDs, original tags, source lines, and the exact grouping. Reproduce with `node scripts/analyze.mjs`. No source code fix is included in this ticket.
 
 ## Reproduction recipe
 

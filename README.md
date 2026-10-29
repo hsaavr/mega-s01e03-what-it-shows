@@ -7,10 +7,12 @@ For agent navigation and upkeep, start at [KNOWLEDGE.md](KNOWLEDGE.md) and the [
 - Signed review source: [4471-review/+page.svx](src/routes/kb/incidents/4471-review/+page.svx).
 - Desk page, rendered from that source with the supplied Svelte layout and data: [rendered review](rendered/kb/incidents/4471-review/index.html).
 - Reproducible evidence: [report audit and ID membership](evidence/report-audit.json), [weekly cohorts](evidence/weekly-cohorts.csv).
-- [Issue drafts](issue-drafts/) cover parser **374**, hint **33**, and one-day shifts **5**, disjoint after report-ID deduplication.
+- [Issue publication records](issue-drafts/) cover parser **374**, hint **33**, and one-day shifts **5**, disjoint after report-ID deduplication.
 - The original accepted decision 0001 is preserved unchanged; decision 0002 proposes evidence-based triage.
 
 The review covers the export through 4 October 2026. Its review date does not imply new queue data. One-day root cause remains unconfirmed. This repository documents problems; it does not contain a production booking-system fix.
+
+Live issues: [parser #1](https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/1), [form hint #2](https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/2), and [one-day investigation #3](https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/3). Course acceptance is still pending.
 
 ## Reproduce
 

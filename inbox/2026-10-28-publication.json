@@ -1,0 +1,14 @@
+{
+  "id": "github-publication-2026-10-28",
+  "type": "tracker-update",
+  "status": "processed",
+  "source_set": "4471-export",
+  "source": "https://github.com/hsaavr/mega-s01e03-what-it-shows/issues",
+  "received_on": "2026-10-28",
+  "summary": "Verified the public hsaavr repo and all three open issues; linked them from the computed KB and recorded the verified publication state.",
+  "filed_in": [
+    "src/routes/kb/incidents/4471-review/+page.svx",
+    "src/routes/kb/incidents/4471/+page.svx",
+    "knowledge/work.json"
+  ]
+}
