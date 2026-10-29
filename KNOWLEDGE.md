@@ -29,6 +29,8 @@ Keep these concepts separate:
 
 The manifest records source content hashes. A changed source invalidates the prior review until an agent evaluates the change. A desk ref identifies the signature text; it is not a content checksum or a certification of accuracy. Never refresh review dates or baseline hashes just to silence a check.
 
+For S01E03 the signature must be the exact course-issued `ticket`, obtained from `start-challenge`, not an author label. That tool also declares the claim answer as an object with `repo` set to the public owner/name or GitHub URL. Keep the logs outside this public repo; publish the signature only in its required frontmatter location.
+
 ## One intake path
 
 Record new exports, report corrections, or tracker status updates as a small JSON pointer in `inbox/`; see `inbox/README.md`. Review each item, connect it to existing notes or a new note, and mark it processed only after the derived artifacts and checks agree. Keep evidence in its authoritative location rather than copying tracker discussions into the KB.

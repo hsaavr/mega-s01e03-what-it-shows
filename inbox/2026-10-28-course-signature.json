@@ -1,0 +1,14 @@
+{
+  "id": "course-signature-2026-10-28",
+  "type": "correction",
+  "status": "processed",
+  "source_set": "4471-export",
+  "source": "https://hq.mega.dev/challenges/what-it-shows",
+  "received_on": "2026-10-28",
+  "summary": "The course start tool specifies an exact issued ticket as page signature and repo as claim answer field; replace the author-text signature and verify the rendered desk ref.",
+  "filed_in": [
+    "src/routes/kb/incidents/4471-review/+page.svx",
+    "src/routes/kb/incidents/4471/+page.svx",
+    ".agents/skills/support-kb-maintain/SKILL.md"
+  ]
+}

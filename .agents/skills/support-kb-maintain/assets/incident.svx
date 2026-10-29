@@ -8,7 +8,7 @@ confidence: provisional
 reviewed: 'YYYY-MM-DD'
 evidence_as_of: 'YYYY-MM-DD'
 source_set: 'Name a reviewed source set in knowledge/sources.json'
-signature: 'Use an attributable signature'
+signature: 'For S01E03 use the exact ticket returned by start-challenge'
 ---
 
 <script>

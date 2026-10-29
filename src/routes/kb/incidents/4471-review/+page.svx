@@ -4,7 +4,7 @@ title: '#4471 reviewed · three date problems'
 owner: hsaavr · Codex harness
 status: investigated
 reviewed: 2026-10-28
-signature: 'hsaavr / Codex harness / S01E03 / 2026-10-28'
+signature: 'v1.eyJzdWIiOiIxMjc1IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMyNTY5MDAsImV4cCI6MTc5MzM0MzMwMH0.mjy3LBSAEzQCLkpOjd8aq7D2fMoC-6-Z_11wJUZn7RE'
 kind: incident-review
 confidence: mixed; one-day cause unconfirmed
 evidence_as_of: 2026-10-04

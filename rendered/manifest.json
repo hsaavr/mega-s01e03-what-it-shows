@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-29T06:51:42.684Z",
+  "generatedAt": "2026-10-29T06:55:41.153Z",
   "inputs": {
     "src/lib/data/desk-notes.json": "a5ffbc829486847f2e301697cc787781b9ff504a69a75233fc8dc6d3cc3ad053",
     "src/lib/data/issue-links.json": "c4c34eaedfd555b7b57a441d5295bec356cf169768a26d4dafdf69f02558e09a",
@@ -31,10 +31,10 @@
     "src/lib/layouts/runbook.svelte": "8c64f33f8623eb5161f320d0a5ffb184901c128d9d4f6e3c8884e4a05a5207de",
     "src/routes/kb/+page.svx": "e286b52641a151e56077aa27e1d5ef1d3d7847aec50f47c1134b0ea6bd9d9b3a",
     "src/routes/kb/decisions/0001-dedupe-by-subject/+page.svx": "41ac5460f198519b61b72c1a344a89fc3f9c26eda481ad85d710fa23f336a1c9",
-    "src/routes/kb/decisions/0002-dedupe-by-evidence/+page.svx": "e710bba72c3ca5c3277e6f50f940961c74a49ae30f3c4bc887030fde8e1e3e61",
-    "src/routes/kb/incidents/4471-review/+page.svx": "225867c0e849ce8851bacb0c6d1abe16dc9b1648fc6a34d9197c66ea20321b48",
-    "src/routes/kb/incidents/4471/+page.svx": "17c9261a486049d994de8904a7b4fda952a52d5dbd958b76e1a506e567b922fc",
-    "src/routes/kb/triage/dedupe/+page.svx": "1c9081d69af9ee3f37e3d6e78327c334bb94794986d13d5ec2757f9ccae5fc9a",
+    "src/routes/kb/decisions/0002-dedupe-by-evidence/+page.svx": "cce52c14459ef465e19c7f1965aacdfd47b90c153ea3e9c53f6eb5ceec32a0d6",
+    "src/routes/kb/incidents/4471-review/+page.svx": "56874c80434be7bf508178f59e54d5a2e054b4ec075944a9bb08465780c77d31",
+    "src/routes/kb/incidents/4471/+page.svx": "da67fcd6541e314727079bb2aa1ed418a6041d2d9c0f4a546142cf2ba85f0888",
+    "src/routes/kb/triage/dedupe/+page.svx": "ee0541b557e35cbabcf87e0644ad553f79ac4d5e97ee506d6799548fa91fc8ac",
     "package.json": "af76cb560750f6d4c3221aee4245382d8dd63de08afc2e8cce67b03f92517bdd",
     "package-lock.json": "8cddc1987f82a3cd232a7cffc20e7cfae13c703b12c25e4b2bb8e715ef3836e5",
     "vite.config.js": "c34375b44cf8800d5a8deb42d4d226aa0440ddf900f6b92c71d087e74abf1a0f",

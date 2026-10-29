@@ -28,7 +28,10 @@ try {
   assert.match(text, /374/);
   assert.match(text, /33/);
   assert.match(text, /5/);
-  assert.match(text, /DR-DAVB-E2YQ/);
+  const page = await server.ssrLoadModule('/src/routes/kb/incidents/4471-review/+page.svx');
+  const { deskRef } = await server.ssrLoadModule('/src/lib/kb/desk-ref.ts');
+  assert.match(page.metadata.signature, /^v1\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/, 'Use the exact course-issued ticket as the signature');
+  assert(text.includes(deskRef(page.metadata.signature)), 'Rendered ref must match the course-issued signature');
   assert.doesNotMatch(text, /no desk ref|undefined|NaN/);
   assert.equal((html.match(/<rect\b/g) || []).length, 54, '27 received and 27 merge bars');
   assert.equal(createHash('sha256').update(await readFile('src/routes/kb/decisions/0001-dedupe-by-subject/+page.svx')).digest('hex'), '41ac5460f198519b61b72c1a344a89fc3f9c26eda481ad85d710fa23f336a1c9', 'Accepted decision must remain unchanged');
