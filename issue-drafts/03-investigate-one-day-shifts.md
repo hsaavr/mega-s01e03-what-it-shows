@@ -6,7 +6,7 @@ Five reports identified by `src/lib/data/desk-notes.json` concern a different da
 
 ## Evidence and confidence
 
-The five IDs are authoritative desk-note membership, not five independently reproduced failures. All originally carry `intakeTag: 'parser'` and all fall in the coarse parser group before this override.
+The five IDs are authoritative desk-note membership, not five independently reproduced failures. All originally carry `intakeTag: 'parser'` and remain included in the exported parser filing. They are a separately flagged symptom subset, not a reassignment out of that group.
 
 | Report | Tenant | Reported symptom | Evidence limit |
 |---|---|---|---|
@@ -18,7 +18,7 @@ The five IDs are authoritative desk-note membership, not five independently repr
 
 There are **5 distinct reports**, with no duplicate export rows, first received April 2 and last received October 4, 2026. Tenant forms: booking-v2 **3**, booking-v3 **2**. This group spans both versions and has no form-channel cases; it should not be absorbed into the booking-v3 hint count.
 
-All source lines and original bodies are in `evidence/report-audit.json`. Reproduce the count with `node scripts/analyze.mjs`. The other disjoint groups are parser **374** and hint **33**, for **412 unique reports** from 427 export rows.
+All source lines and original bodies are in `evidence/report-audit.json`. Reproduce the count with `node scripts/analyze.mjs`. The desk's primary filing groups are parser **379** and hint **33**, for **412 unique reports** from 427 export rows. All **5** one-day flags overlap the 379 parser-filed reports; do not add this ticket's count to the primary totals.
 
 ## Investigation / reproduction plan
 

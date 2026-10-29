@@ -37,7 +37,10 @@ function coarseCause(report) {
   return report.channel === 'form' && tenant.form === 'booking-v3' ? 'hint' : 'parser';
 }
 function cause(report) {
-  return oneDayIds.has(report.id) ? 'one-day' : coarseCause(report);
+  return coarseCause(report);
+}
+function inGroup(report, key) {
+  return key === 'one-day' ? oneDayIds.has(report.id) : cause(report) === key;
 }
 const unique = new Map();
 const occurrences = new Map();
@@ -84,7 +87,7 @@ function representative(report) {
     id: report.id, tenant: report.tenant, channel: report.channel,
     tenantLocale: tenant?.locale ?? null, formVersion: tenant?.form ?? null,
     browserLocale: report.meta.browserLocale, intakeTag: report.meta.intakeTag,
-    cause: cause(report), receivedAt: report.receivedAt,
+    cause: cause(report), oneDayFlag: oneDayIds.has(report.id), receivedAt: report.receivedAt,
     explicitTranspose: explicitTranspose(report),
     source: 'src/lib/data/reports-4471.json', idLines: idLines.get(report.id),
     bodyLines: idLines.get(report.id).map((line) => line + 5), body: report.body
@@ -96,10 +99,12 @@ const selected = {
   'one-day': [...oneDayIds], unplaced: []
 };
 const groups = causes.map((key) => {
-  const items = reports.filter((report) => cause(report) === key);
+  const items = reports.filter((report) => inGroup(report, key));
   const handles = [...new Set(items.map((report) => report.tenant))].sort();
   return {
-    cause: key, count: items.length, rawCount: input.filter((report) => cause(report) === key).length,
+    cause: key,
+    label: key === 'one-day' ? 'Desk one-day symptom flag (overlapping subset)' : `${key} desk filing`,
+    count: items.length, rawCount: input.filter((report) => inGroup(report, key)).length,
     ids: items.map((report) => report.id),
     tenants: handles.map((handle) => ({ ...tenants.get(handle), count: items.filter((report) => report.tenant === handle).length })),
     firstSeen: earliest(items), lastSeen: latest(items),
@@ -112,18 +117,18 @@ function cohorts(field, keyFn) {
   const keys = [...new Set(reports.map((report) => keyFn(report[field])))].sort();
   return keys.map((key) => {
     const items = reports.filter((report) => keyFn(report[field]) === key);
-    return { cohort: key, ...tally(items), total: items.length };
+    return { cohort: key, ...tally(items), oneDayFlag: items.filter((report) => oneDayIds.has(report.id)).length, total: items.length };
   });
 }
 const receivedWeekly = cohorts('receivedAt', weekStart);
 const mergedWeekly = cohorts('mergedAt', weekStart);
 const weeks = [...new Set([...receivedWeekly, ...mergedWeekly].map((row) => row.cohort))].sort();
 const weekly = weeks.map((week) => {
-  const received = receivedWeekly.find((row) => row.cohort === week) ?? { ...tally([]), total: 0 };
-  const merged = mergedWeekly.find((row) => row.cohort === week) ?? { ...tally([]), total: 0 };
+  const received = receivedWeekly.find((row) => row.cohort === week) ?? { ...tally([]), oneDayFlag: 0, total: 0 };
+  const merged = mergedWeekly.find((row) => row.cohort === week) ?? { ...tally([]), oneDayFlag: 0, total: 0 };
   const row = { weekStart: week };
   for (const [prefix, values] of [['received', received], ['merged', merged]]) {
-    for (const key of [...causes, 'total']) row[`${prefix}_${key}`] = values[key];
+    for (const key of [...causes, 'oneDayFlag', 'total']) row[`${prefix}_${key}`] = values[key];
   }
   return row;
 });
@@ -134,22 +139,29 @@ const intakeTagCrossTab = ['parser', 'hint'].map((tag) => ({
 }));
 const july2 = reports.filter((report) => report.mergedAt.startsWith('2026-07-02'));
 const audit = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   intendedRepository: 'hsaavr/mega-s01e03-what-it-shows',
   source: { path: 'src/lib/data/reports-4471.json', sha256: createHash('sha256').update(reportText).digest('hex') },
   methodology: {
     identity: 'Deduplicate id only after asserting repeated records are identical.',
     tenantDateOrder: 'Intl.DateTimeFormat(locale,{day:"2-digit",month:"2-digit",year:"numeric"}).formatToParts; compare day and month positions.',
     coarse: 'Known day-first tenant AND channel=form AND tenant.form=booking-v3 => hint; other known day-first => parser; unknown or non-day-first => unplaced.',
-    override: 'desk-notes.oneDayMove IDs form a separate one-day group after coarse grouping.',
-    intakeTag: 'Browser-derived guess; excluded from final cause classification.',
-    cohorts: 'Distinct reports, Monday-start weeks, timestamp local calendar date. receivedAt measures incoming reports; mergedAt measures ticket triage.'
+    oneDayFlag: 'desk-notes.oneDayMove IDs are an overlapping symptom subset; preserve their underlying desk filing. Group counts are coverage memberships, not disjoint root-cause totals.',
+    intakeTag: 'Browser-derived guess; excluded from desk filing classification.',
+    cohorts: 'Distinct reports by primary desk filing, Monday-start weeks, timestamp local calendar date. oneDayFlag is an overlapping subset and must not be added to total. receivedAt measures incoming reports; mergedAt measures ticket triage.'
   },
   totals: {
     inputRows: input.length, uniqueReportIds: reports.length, duplicateExtraRows: input.length - reports.length,
     duplicateIds: [...occurrences].filter(([, count]) => count > 1).map(([id, count]) => ({ id, count })),
     coarseUnique: tally(reports, coarseCause), coarseRaw: tally(input, coarseCause),
     finalUnique: tally(reports), finalRaw: tally(input),
+    coverageCounts: Object.fromEntries(groups.map((group) => [group.cause, group.count])),
+    overlap: {
+      parserAndOneDay: reports.filter((report) => cause(report) === 'parser' && oneDayIds.has(report.id)).length,
+      hintAndOneDay: reports.filter((report) => cause(report) === 'hint' && oneDayIds.has(report.id)).length,
+      distinctReportUnion: new Set(groups.flatMap((group) => group.ids)).size,
+      memberships: groups.reduce((sum, group) => sum + group.count, 0)
+    },
     intakeTagDisagreementCount: tagDisagreements.length,
     explicitTransposeCount: reports.filter(explicitTranspose).length,
     firstSeen: earliest(reports), lastSeen: latest(reports)
@@ -170,14 +182,23 @@ const audit = {
   limitations: [
     'Counts describe reports, not unique bookings, users, incidents, or incidence rates.',
     'Tenant form metadata is not versioned per report; classification uses the available current tenant export.',
-    'Four parser reports have weaker body detail: R-41290, R-41417, R-41514, R-41615.',
-    'One-day group membership follows desk notes; R-41236 does not independently demonstrate a one-day move.',
+    'Desk filing counts are not independently confirmed root-cause counts. Four unflagged parser-filed reports have weaker body detail: R-41290, R-41417, R-41514, R-41615.',
+    'One-day group membership follows desk notes and overlaps parser filing; R-41236 does not independently demonstrate a one-day move.',
     'One-day root cause is unknown. A timezone or date-only conversion is a hypothesis requiring reproduction.',
     'The first week begins with April 1 data; the October monthly bucket ends October 4.'
   ],
   records: reports.map((report) => ({ ...representative(report), mergedAt: report.mergedAt, coarseCause: coarseCause(report), receivedWeek: weekStart(report.receivedAt), mergedWeek: weekStart(report.mergedAt) }))
 };
-assert.equal(Object.values(audit.totals.finalUnique).reduce((a, b) => a + b, 0), reports.length);
+assert.deepEqual(audit.totals.coverageCounts, { parser: 379, hint: 33, 'one-day': 5, unplaced: 0 });
+assert.deepEqual(audit.totals.overlap, { parserAndOneDay: 5, hintAndOneDay: 0, distinctReportUnion: 412, memberships: 417 });
+assert.equal(audit.totals.overlap.distinctReportUnion, reports.length);
+assert.equal(audit.totals.overlap.memberships - audit.totals.overlap.parserAndOneDay - audit.totals.overlap.hintAndOneDay, reports.length);
+assert.equal(audit.totals.explicitTransposeCount, 403);
+for (const row of weekly) {
+  for (const prefix of ['received', 'merged']) {
+    assert.equal(row[`${prefix}_parser`] + row[`${prefix}_hint`] + row[`${prefix}_unplaced`], row[`${prefix}_total`]);
+  }
+}
 assert.equal(weekly.reduce((sum, row) => sum + row.received_total, 0), reports.length);
 assert.equal(weekly.reduce((sum, row) => sum + row.merged_total, 0), reports.length);
 const evidence = new URL('evidence/', root);
@@ -185,4 +206,4 @@ await mkdir(evidence, { recursive: true });
 await writeFile(new URL('report-audit.json', evidence), `${JSON.stringify(audit, null, 2)}\n`);
 const columns = Object.keys(weekly[0]);
 await writeFile(new URL('weekly-cohorts.csv', evidence), `${columns.join(',')}\n${weekly.map((row) => columns.map((key) => row[key]).join(',')).join('\n')}\n`);
-console.log(JSON.stringify({ rows: input.length, unique: reports.length, duplicates: input.length - reports.length, final: audit.totals.finalUnique, disagreements: tagDisagreements.length, evidence: fileURLToPath(evidence) }, null, 2));
+console.log(JSON.stringify({ rows: input.length, unique: reports.length, duplicates: input.length - reports.length, coverage: audit.totals.coverageCounts, overlap: audit.totals.overlap, disagreements: tagDisagreements.length, evidence: fileURLToPath(evidence) }, null, 2));

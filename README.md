@@ -7,7 +7,7 @@ For agent navigation and upkeep, start at [KNOWLEDGE.md](KNOWLEDGE.md) and the [
 - Signed review source: [4471-review/+page.svx](src/routes/kb/incidents/4471-review/+page.svx).
 - Desk page, rendered from that source with the supplied Svelte layout and data: [rendered review](rendered/kb/incidents/4471-review/index.html).
 - Reproducible evidence: [report audit and ID membership](evidence/report-audit.json), [weekly cohorts](evidence/weekly-cohorts.csv).
-- [Issue publication records](issue-drafts/) cover parser **374**, hint **33**, and one-day shifts **5**, disjoint after report-ID deduplication.
+- [Issue publication records](issue-drafts/) cover parser filing **379**, hint **33**, and one-day flags **5** using the exported desk view. The five flags are already included in parser; the distinct-report union is **412**, not the sum of overlapping issue coverage.
 - The original accepted decision 0001 is preserved unchanged; decision 0002 proposes evidence-based triage.
 
 The review covers the export through 4 October 2026. Its review date does not imply new queue data. One-day root cause remains unconfirmed. This repository documents problems; it does not contain a production booking-system fix.

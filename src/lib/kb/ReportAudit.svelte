@@ -6,7 +6,7 @@
 
 <p><strong>{audit.unique} distinct reports</strong> from {audit.rawRows} exported rows; {audit.repeatedRows} repeated rows removed by report ID. Counts measure reports, not customers or bookings.</p>
 <table>
-  <caption>Disjoint problems in the export, through 4 October 2026</caption>
+  <caption>Issue coverage in the exported desk view; one-day flags overlap parser</caption>
   <thead><tr><th>Problem</th><th>Reports</th><th>Tenants</th><th>Received</th><th>Ticket</th></tr></thead>
   <tbody>
     {#each groups as g (g.problem)}
@@ -16,7 +16,8 @@
 </table>
 
 <h3>How the counts were checked</h3>
-<p>The supplied tenant/channel classifier gives parser {audit.coarseParser} and hint {audit.coarseHint}. Those groups include the {oneDayIds.size} desk-noted one-day cases inside parser. This review separates that symptom family first, then applies the supplied classifier to the remaining reports. It does not add those reports twice.</p>
+<p>The exported tenant/channel classifier gives parser {audit.coarseParser} and hint {audit.coarseHint}. The {oneDayIds.size} desk-noted one-day reports stay inside the parser filing and are tracked separately as a symptom flag. Do not add the issue rows to obtain a distinct-report total: they contain overlapping coverage.</p>
+<p>Removing the flagged subset gives a derived residual of {audit.parserExcludingFlags} parser-filed reports. That residual is not the desk's parser count. Filing counts describe the exported view; they do not prove the same root cause for every report.</p>
 <p>{audit.misleadingTags} intake tags disagree with the tenant/channel classifier. Intake tags reflect a browser-locale guess; they are not the problem identity. Deduplicate by ID, join the tenant directory, check its locale with <code>Intl.DateTimeFormat</code>, and use the channel and actual form version.</p>
 
 <h3>Received dates and merge dates answer different questions</h3>

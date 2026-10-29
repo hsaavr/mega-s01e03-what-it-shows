@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp, cp, readFile, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { checkKnowledge } from './kb-check.mjs';
 
@@ -10,7 +10,7 @@ const original = fileURLToPath(new URL('../', import.meta.url));
 async function fixture(run) {
   const root = await mkdtemp(join(tmpdir(), 'mega-kb-check-'));
   try {
-    for (const path of ['src', 'knowledge', 'inbox', 'rendered', 'scripts', 'package.json', 'package-lock.json', 'vite.config.js']) await cp(join(original, path), join(root, path), { recursive: true });
+    await cp(original, root, { recursive: true, filter: (path) => !['.git', 'node_modules'].includes(relative(original, path).split(sep)[0]) });
     await run(root);
   } finally { await rm(root, { recursive: true, force: true }); }
 }

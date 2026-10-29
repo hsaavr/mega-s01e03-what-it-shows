@@ -5,18 +5,18 @@ import { tenantOf } from '#lib/kb/locales';
 
 export type Problem = 'parser' | 'hint' | 'one-day' | 'unplaced';
 export const labels: Record<Problem, string> = {
-  parser: 'Shared parser reads day-first input month first',
+  parser: 'Parser filing in the exported desk view',
   hint: 'booking-v3 hint disagrees with tenant date parsing',
-  'one-day': 'Calendar day shifts by one day; cause unconfirmed',
+  'one-day': 'One-day flags (already included in parser filing)',
   unplaced: 'Needs classification',
 };
 export const reports = uniqueById(raw as Report[]).filter((r) => r.mergedInto === 4471);
 export const oneDayIds = new Set(notes.oneDayMove);
 export function problemOf(r: Report): Problem {
-  return oneDayIds.has(r.id) ? 'one-day' : causeOf(r, tenantOf(r)) ?? 'unplaced';
+  return causeOf(r, tenantOf(r)) ?? 'unplaced';
 }
 export const groups = (['parser', 'hint', 'one-day', 'unplaced'] as Problem[]).map((problem) => {
-  const rows = reports.filter((r) => problemOf(r) === problem);
+  const rows = reports.filter((r) => problem === 'one-day' ? oneDayIds.has(r.id) : problemOf(r) === problem);
   const days = rows.map((r) => r.receivedAt.slice(0, 10)).sort();
   return { problem, label: labels[problem], rows, count: rows.length,
     tenants: new Set(rows.map((r) => r.tenant)).size,
@@ -28,6 +28,7 @@ export const audit = {
   repeatedRows: raw.length - uniqueById(raw as Report[]).length,
   coarseParser: reports.filter((r) => causeOf(r, tenantOf(r)) === 'parser').length,
   coarseHint: reports.filter((r) => causeOf(r, tenantOf(r)) === 'hint').length,
+  parserExcludingFlags: reports.filter((r) => causeOf(r, tenantOf(r)) === 'parser' && !oneDayIds.has(r.id)).length,
   misleadingTags: reports.filter((r) => r.meta.intakeTag !== causeOf(r, tenantOf(r))).length,
   mergedOnJuly2: reports.filter((r) => r.mergedAt?.startsWith('2026-07-02')).length,
 };

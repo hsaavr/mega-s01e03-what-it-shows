@@ -20,6 +20,8 @@ Start with these pointers and `rg`; this small base does not need a search servi
 
 Raw exports under `src/lib/data/` remain immutable source material during an analysis. `evidence/` and `rendered/` are derived outputs. Issues belong in the tracker once published; this KB distills findings and links to them. Draft files are publication inputs, not evidence of live issues.
 
+For #4471, report coverage follows the exported desk filing: parser and hint are primary groups; one-day notes are an overlapping symptom flag within parser. A derived count that excludes those flags must not replace the exported parser total. Preserve this distinction when joining evidence, counting issues, and summarizing the queue.
+
 Keep these concepts separate:
 
 - `evidence_as_of`: the latest date covered by the source snapshot.

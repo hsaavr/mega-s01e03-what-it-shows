@@ -35,4 +35,4 @@ Expected: displayed guidance and actual interpretation agree, and the intended d
 
 ## Counting and trend limits
 
-The 33 cases are disjoint from parser **374** and day-shift **5** after ID deduplication. Received monthly hint counts are April **3**, May **6**, June **2**, July **14**, August **4**, September **4**, and October **0** through October 4. These are report counts with no booking-volume denominator or deployment history, so the decline after July does not prove a fix. Use the audit's `receivedAt` cohorts rather than merge dates.
+The 33 hint cases are disjoint from the **379** parser-filed reports. The separate **5** one-day flags are already included in parser filing and do not add to the **412** distinct reports. Received monthly hint counts are April **3**, May **6**, June **2**, July **14**, August **4**, September **4**, and October **0** through October 4. These are report counts with no booking-volume denominator or deployment history, so the decline after July does not prove a fix. Use the audit's `receivedAt` cohorts rather than merge dates.

@@ -1,4 +1,4 @@
-# Shared parser transposes day-first tenant dates — 374 reports
+# Shared parser path — 379 reports in the exported desk view
 
 Publication record for [1](https://github.com/hsaavr/mega-s01e03-what-it-shows/issues/1).
 
@@ -6,9 +6,9 @@ For a tenant that writes dates day first, an intended appointment date such as 7
 
 ## Evidence and scope
 
-- **374 distinct reports**, after removing the separate five day-shift reports and assigning the booking-v3 form cases to the separate hint issue. First received April 1, 2026; last received October 4, 2026.
-- **370** bodies explicitly show a day/month transposition. Four reports have weaker body detail and remain in this group through the documented classifier: `R-41290`, `R-41417`, `R-41514`, `R-41615`.
-- All 11 tenant locales in `src/lib/data/tenants/` have day before month under the exact `Intl.DateTimeFormat(...).formatToParts` check. Coarse parser membership is a known day-first tenant outside the booking-v3/form conjunction. Then the five `desk-notes.oneDayMove` IDs are removed.
+- **379 distinct reports in the exported parser filing.** First received April 1, 2026; last received October 4, 2026. The desk's view retains all five `desk-notes.oneDayMove` reports inside this group and footnotes them; the separate one-day investigation overlaps this ticket's coverage.
+- **370** bodies explicitly show a day/month transposition. Four reports have weaker body detail: `R-41290`, `R-41417`, `R-41514`, `R-41615`. Five more are the separately flagged one-day cases. Thus 374 is the derived residual excluding flags, not the exported parser total. These filing counts do not prove that every report has one root cause.
+- All 11 tenant locales in `src/lib/data/tenants/` have day before month under the exact `Intl.DateTimeFormat(...).formatToParts` check. Exported parser membership is a known day-first tenant outside the booking-v3/form conjunction. Preserve the one-day flags inside that filing group when counting coverage.
 - `R-41200`, Harbour Dental, `en-GB`, booking-v2, app: “Our 7 April reminder went out on 4 July.” `R-41201` is a separately identified correction with the reverse dates. Both remain distinct report IDs; the export has no booking identity to establish incident deduplication.
 - `R-41205`, Morrow Tax, booking-v2/app: booked 3 October, invite 10 March. Its `en-US` browser causes the intake guess to say `hint`, but the tenant/form/channel classifier places it here.
 - `R-41370`, Pale Harbour, booking-v3/**email**: 9 December became 12 September. Booking-v3 alone does not establish the form hint path.
@@ -31,7 +31,7 @@ Expected: the appointment and invite represent 7 April 2026. Documented current 
 - Valid dates with a day above 12, including `13/04/2026`, remain valid and exact. Invalid dates are rejected explicitly rather than silently normalized.
 - Cover every tenant locale in the export; vary browser locale independently, including `en-US` and `en-GB`.
 - Verify all actual booking entry paths that call the shared parser, and both form versions where that parser applies. The report's `channel` field is the classifier input; confirm its relationship to runtime entry paths during implementation.
-- Keep a regression fixture for the five desk-noted day-shift IDs separate; this fix does not establish their root cause or resolution.
+- Keep a regression fixture for the five desk-noted day-shift IDs separately flagged within the parser filing; this fix does not establish their root cause or resolution.
 
 ## Counting limits
 

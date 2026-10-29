@@ -17,7 +17,7 @@ source_set: 4471-export
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
 </script>
 
-The desk merged distinct date problems into one ticket. Shared subjects did not establish a shared cause. The old “known, one fix queued” conclusion cannot cover this evidence.
+The desk merged distinct date problems into one ticket. Shared subjects did not establish a shared cause. The old “known, one fix queued” conclusion cannot cover this evidence. Ticket coverage below follows the desk's exported filing view, including its overlapping symptom flags.
 
 This review uses the export through **4 October 2026**, not a live queue. A later review date records when the export was checked; it does not imply fresh reports. No product fix has been shipped or verified here.
 
@@ -45,7 +45,7 @@ Both series select the reports currently merged into this ticket. The window inc
 
 Use the [revised triage procedure](/kb/triage/dedupe) and [replacement decision](/kb/decisions/0002-dedupe-by-evidence). Read the report body before merging. Join tenant locale and form metadata, compare the affected path and symptom, and keep uncertain reports open for investigation. Subject text and intake tags help find candidates; neither authorizes a merge.
 
-Keep one issue per problem and attach each report ID once. Keep one-day cases separate even when the tenant/channel classifier would file them under parser. Record received and merged times separately. Recompute these views when the desk exports new data, and recheck live issue state before relying on this snapshot.
+Keep one issue per problem and count each report ID once within that issue. The one-day investigation references the flagged subset already included in parser filing; preserve and label that overlap. Record received and merged times separately. Recompute these views when the desk exports new data, and recheck live issue state before relying on this snapshot.
 
 ## Provenance and verification
 

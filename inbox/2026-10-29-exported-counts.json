@@ -1,0 +1,16 @@
+{
+  "id": "exported-count-correction-2026-10-29",
+  "type": "correction",
+  "status": "processed",
+  "source_set": "4471-export",
+  "source": "https://hq.mega.dev/challenges/what-it-shows",
+  "received_on": "2026-10-29",
+  "summary": "Course feedback requires the exported desk filing count: parser379, hint33, with5oneDay flags overlapping parser. Preserve filing and flags rather than reassigning or subtracting the subset.",
+  "filed_in": [
+    "src/routes/kb/incidents/4471-review/+page.svx",
+    "evidence/report-audit.json",
+    "issue-drafts/01-parser-day-first.md",
+    "issue-drafts/02-booking-v3-hint.md",
+    "issue-drafts/03-investigate-one-day-shifts.md"
+  ]
+}
