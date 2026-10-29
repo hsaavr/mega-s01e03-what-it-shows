@@ -6,14 +6,11 @@
     "Proposed evidence-based triage",
     "Local source-change and knowledge-health checks",
     "Published public repo and two verified defect issues and preserved symptom notes",
-    "Ingested subsequent engineering update; closed accepted issues with fixed versus retired dispositions"
+    "Ingested subsequent engineering update; closed accepted issues with fixed versus retired dispositions",
+    "Course accepted the completed tickets and signed page; debrief saved"
   ],
-  "active": [
-    "Submit closed accepted tickets and updated signed KB page; final course acceptance pending"
-  ],
-  "planned": [
-    "Desk follow-up: investigate one-day-shift root cause using missing runtime evidence"
-  ],
+  "active": [],
+  "planned": [],
   "archived": [
     "Subject-only merging is retained in decision 0001 as historical policy"
   ],
@@ -22,5 +19,10 @@
     "verified_on": "2026-10-29",
     "repository": "hsaavr/mega-s01e03-what-it-shows"
   },
-  "automation": "on-demand; no recurring job or integration configured"
+  "automation": "on-demand; no recurring job or integration configured",
+  "course": {
+    "status": "solved",
+    "accepted_on": "2026-10-29",
+    "debrief_url": "https://hq.mega.dev/challenges/what-it-shows#debrief"
+  }
 }

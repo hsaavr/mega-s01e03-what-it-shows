@@ -1,0 +1,13 @@
+{
+  "id": "course-accepted-2026-10-29",
+  "type": "tracker-update",
+  "status": "processed",
+  "source_set": "4471-desk-update",
+  "source": "https://hq.mega.dev/challenges/what-it-shows#debrief",
+  "received_on": "2026-10-29",
+  "summary": "The course accepted both completed defect tickets and the signed rendered KB page; the debrief is saved on the course page.",
+  "filed_in": [
+    "knowledge/work.json",
+    "README.md"
+  ]
+}
